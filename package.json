@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "start:dev": "nodemon ./src/index.ts"
   },
   "keywords": [],
   "author": "Konrad Glowacki <konrad.glowacki@wpengine.com> (https://wpengine.com/)",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "@apollo/server": "^4.9.5",
     "@graphql-tools/wrap": "^10.0.1",
@@ -20,6 +20,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.9.4",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.2",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
   }
 }

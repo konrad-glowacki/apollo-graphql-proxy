@@ -10,7 +10,7 @@ async function main() {
   });
 
   const { url } = await startStandaloneServer(server, {
-    listen: { port: parseInt(process.env.PORT) ?? 4000 },
+    listen: { port: process.env.PORT ? parseInt(process.env.PORT) : 4000 },
   });
 
   console.log(`🚀 WPGraphQL proxy running at ${url}`);
