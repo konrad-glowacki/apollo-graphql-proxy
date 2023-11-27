@@ -1,6 +1,11 @@
 homepage:
   enabled: true
 
+health_check:
+  listen: 0.0.0.0:8088
+  enabled: true
+  path: /health
+
 supergraph:
   listen: 0.0.0.0:4000
 
