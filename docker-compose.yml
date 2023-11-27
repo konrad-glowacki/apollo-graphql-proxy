@@ -22,9 +22,9 @@ services:
         'info',
       ]
     ports:
-      - '4000:4000'
-      - '8088:8088'
-      - '9090:9090'
+      - 4000:4000
+      - 8088:8088
+      - 9090:9090
 
   wpgraphql:
     container_name: 'wpgraphql'

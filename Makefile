@@ -5,9 +5,14 @@ basic:
 docker-build:
 	docker-compose build
 
-start:
-	docker-compose -f docker-compose.yml up -d
+.PHONY: docker-start
+docker-start:
+	docker-compose up -d
 
 .PHONY: docker-down
 docker-down:
 	docker-compose down --remove-orphans
+
+.PHONY: graphql-query
+graphql-query:
+	./scripts/graphql-query.sh
