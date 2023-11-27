@@ -3,7 +3,7 @@
 PORT="${1:-4000}"
 
 read -r -d '' QUERY <<"EOF"
-query ExamplePostsQuery {
+{
   posts {
     nodes {
       id,

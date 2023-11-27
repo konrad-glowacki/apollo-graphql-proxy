@@ -2,7 +2,10 @@ homepage:
   enabled: true
 
 supergraph:
-  listen: 127.0.0.1:4000
+  listen: 0.0.0.0:4000
+
+override_subgraph_url:
+  wpgraphql: '${env.WPGRAPHQL_URL}'
 
 telemetry:
   metrics:
@@ -10,5 +13,5 @@ telemetry:
       service_name: 'router'
     prometheus:
       enabled: true
-      listen: 127.0.0.1:9090
+      listen: 0.0.0.0:9090
       path: /metrics

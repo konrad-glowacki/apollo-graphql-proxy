@@ -4,8 +4,8 @@ services:
   apollo-router:
     image: ghcr.io/apollographql/router:v${APOLLO_ROUTER_VERSION}
     container_name: 'apollo-router'
-    restart: always
     environment:
+      - WPGRAPHQL_URL=${WPGRAPHQL_URL}
       - APOLLO_KEY=${APOLLO_ROUTER_KEY}
       - APOLLO_GRAPH_REF=${APOLLO_ROUTER_GRAPH_REF}
       - APOLLO_SCHEMA_REPORTING=${APOLLO_ROUTER_SCHEMA_REPORTING}
@@ -27,12 +27,11 @@ services:
       - 8088:8088
       - 9090:9090
 
-  wpgraphql:
-    container_name: 'wpgraphql'
-    build: ./subgraphs/wpgraphql
-    restart: always
-    environment:
-      - PORT=${SUBGRAPH_WPGRAPHQL_PORT}
-      - WPGRAPHQL_URL=${SUBGRAPH_WPGRAPHQL_URL}
-    ports:
-      - 4001:${SUBGRAPH_WPGRAPHQL_PORT}
+  # wpgraphql:
+  #   container_name: 'wpgraphql'
+  #   build: ./subgraphs/wpgraphql
+  #   environment:
+  #     - PORT=${SUBGRAPH_WPGRAPHQL_PORT}
+  #     - WPGRAPHQL_URL=${WPGRAPHQL_URL}
+  #   ports:
+  #     - 4001:${SUBGRAPH_WPGRAPHQL_PORT}
