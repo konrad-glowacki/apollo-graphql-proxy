@@ -9,7 +9,7 @@ query ExamplePostsQuery {
       id,
       slug,
       title,
-      description
+      excerpt
     }
   }
 }

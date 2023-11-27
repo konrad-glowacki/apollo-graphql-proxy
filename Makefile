@@ -1,5 +1,4 @@
-basic:
-	echo "Hello"
+default: docker-build docker-start graphql-query
 
 .PHONY: docker-build
 docker-build:
@@ -12,6 +11,9 @@ docker-start:
 .PHONY: docker-down
 docker-down:
 	docker-compose down --remove-orphans
+
+.PHONY: docker-restart
+docker-restart: docker-down docker-start
 
 .PHONY: graphql-query
 graphql-query:

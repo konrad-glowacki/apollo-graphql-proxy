@@ -20,6 +20,7 @@ services:
         'schema/supergraph.graphql',
         '--log',
         'info',
+        '--dev',
       ]
     ports:
       - 4000:4000
@@ -33,3 +34,5 @@ services:
     environment:
       - PORT=${SUBGRAPH_WPGRAPHQL_PORT}
       - WPGRAPHQL_URL=${SUBGRAPH_WPGRAPHQL_URL}
+    ports:
+      - 4001:${SUBGRAPH_WPGRAPHQL_PORT}
