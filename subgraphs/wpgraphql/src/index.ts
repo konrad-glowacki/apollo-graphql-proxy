@@ -2,11 +2,11 @@ import 'dotenv/config';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 
-import { getSchema } from './schema';
+import { createRemoteSchema } from './schema';
 
-async function main() {
+async function bootstrap() {
   const server = new ApolloServer({
-    schema: await getSchema(),
+    schema: await createRemoteSchema(),
   });
 
   const { url } = await startStandaloneServer(server, {
@@ -16,7 +16,7 @@ async function main() {
   console.log(`🚀 WPGraphQL proxy running at ${url}`);
 }
 
-main().catch((err) => {
+bootstrap().catch((err) => {
   console.error(err);
   process.exit(1);
 });

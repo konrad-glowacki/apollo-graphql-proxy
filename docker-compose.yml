@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  apollo-router:
+    image: ghcr.io/apollographql/router:v${APOLLO_ROUTER_VERSION}
+    container_name: 'apollo-router'
+    restart: always
+    build:
+      context: ./apollo-router
+    environment:
+      - APOLLO_KEY=${APOLLO_ROUTER_KEY}
+      - APOLLO_GRAPH_REF=${APOLLO_ROUTER_GRAPH_REF}
+      - APOLLO_SCHEMA_REPORTING=${APOLLO_ROUTER_SCHEMA_REPORTING}
+    volumes:
+      - ./router.yaml:/dist/config/router.yaml
+      - ./supergraph.graphql:/dist/schema/local.graphql
+    command:
+      [
+        '-c',
+        'config/router.yaml',
+        '-s',
+        'schema/supergraph.graphql',
+        '--log',
+        'info',
+      ]
+    ports:
+      - '4000:4000'
+
+  wpgraphql:
+    container_name: 'wpgraphql'
+    build: ./subgraphq/wpgraphql
+    restart: always
+    command: node ./dist/index.js
+    environment:
+      - PORT=${SUBGRAPH_WPGRAPHQL_PORT}
+      - WPGRAPHQL_URL=${SUBGRAPH_WPGRAPHQL_URL}
