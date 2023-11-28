@@ -10,6 +10,7 @@ health_check:
   path: /health
 
 supergraph:
+  path: /*
   listen: 0.0.0.0:4000
 
 override_subgraph_url:
