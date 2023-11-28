@@ -26,24 +26,25 @@ services:
       - 4000:4000
       - 8088:8088
       - 9090:9090
-#   grafana:
-#     image: grafana/grafana
-#     restart: always
-#     environment:
-#       GF_INSTALL_PLUGINS: 'grafana-clock-panel,grafana-simple-json-datasource'
-#     volumes:
-#       - grafana_data:/var/lib/grafana
-#       - ./grafana/provisioning/:/etc/grafana/provisioning/
-#     env_file:
-#       - ./grafana/config.monitoring
-#     ports:
-#       - 5000:3000
-#     depends_on:
-#       - apollo-router
 
-# volumes:
-#   grafana_data: {}
+  grafana:
+    image: grafana/grafana-enterprise
+    restart: unless-stopped
+    environment:
+      GF_INSTALL_PLUGINS: 'grafana-clock-panel,grafana-simple-json-datasource'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    ports:
+      - 5000:3000
+    depends_on:
+      - apollo-router
 
+volumes:
+  grafana-storage: {}
+#
 # wpgraphql:
 #   container_name: 'wpgraphql'
 #   build: ./subgraphs/wpgraphql

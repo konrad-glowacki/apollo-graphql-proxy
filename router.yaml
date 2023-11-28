@@ -20,6 +20,9 @@ telemetry:
   metrics:
     common:
       service_name: 'router'
+      resource:
+        'environment.name': 'local'
+
     prometheus:
       enabled: true
       listen: 0.0.0.0:9090
